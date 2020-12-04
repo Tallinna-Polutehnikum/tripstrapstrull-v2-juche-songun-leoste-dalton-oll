@@ -1,5 +1,7 @@
-import time
+import time, random
 from os import system, name 
+
+arvuti = False
 
 esimesevoidud = teisevoidud = 0
 
@@ -175,7 +177,7 @@ def paigutas2(lauasuurus, valik, number, numberlist):
 
             if valik == number and mangulist[numberlist] == '#':
                 mangulist[numberlist] = teine
-                print('\nTeine mängija paigutas enda tähemärgi kohale', valik)
+                print('Teine mängija paigutas enda tähemärgi kohale', valik)
                 return True
                 break
             #end
@@ -189,7 +191,7 @@ def paigutas2(lauasuurus, valik, number, numberlist):
 
             if valik == number and mangulist[numberlist] == '#':
                 mangulist[numberlist] = teine
-                print('\nTeine mängija paigutas enda tähemärgi kohale', valik)
+                print('Teine mängija paigutas enda tähemärgi kohale', valik)
                 return True
                 break
             #end
@@ -203,7 +205,7 @@ def paigutas2(lauasuurus, valik, number, numberlist):
 
             if valik == number and mangulist[numberlist] == '#':
                 mangulist[numberlist] = teine
-                print('\nTeine mängija paigutas enda tähemärgi kohale', valik)
+                print('Teine mängija paigutas enda tähemärgi kohale', valik)
                 return True
                 break
             #end
@@ -212,6 +214,8 @@ def paigutas2(lauasuurus, valik, number, numberlist):
             numberlist = numberlist + 1
         #end
     #end
+
+    time.sleep(2)
 
     return False
 #end
@@ -239,7 +243,40 @@ def laud(lauasuurus):
 #end
 
 def alusta():
-    global esimene, teine, lauasuurus
+    global esimene, teine, lauasuurus, arvuti
+
+    while True:
+        try:
+            arvuti = str(input('Kas sa soovid mängida arvuti vastu? (Jah/Ei) : '))
+        except:
+            sobilik()
+            continue
+        else:
+            if arvuti == 'J' or arvuti == 'j':
+                print('Selge, lisan mängu arvuti')
+                arvuti = True
+                break
+            elif arvuti == 'Jah' or arvuti == 'jah':
+                print('Selge, lisan mängu arvuti')
+                arvuti = True
+                break
+            elif arvuti == 'E' or arvuti == 'e':
+                print('Selge, ei lisa mängu arvutit')
+                arvuti = False
+                break
+            elif arvuti == 'Ei' or arvuti == 'ei':
+                print('Selge, ei lisa mängu arvutit')
+                arvuti = False
+                break
+            else:
+                sobilik()
+                continue
+            #end
+        #end
+    #end
+
+    time.sleep(1)
+    clear()
 
     while True:
         try:
@@ -424,12 +461,11 @@ def kontroll(lauasuurus, kaik):
 #end
 
 def mang(lauasuurus):
-    global esimene, teine
+    global esimene, teine, arvuti
 
-    kaik = 0
-    valik = ''
+    kaik = numberlist = 0
     number = 1
-    numberlist = 0
+    valik = ''
     
     while True:
         time.sleep(1)
@@ -445,8 +481,7 @@ def mang(lauasuurus):
                     laud('5x5')
                 #end
 
-                print('')
-                valik = int(input('Millisele kohale soovib esimene mängija enda tähemärgi paigutada? : '))
+                valik = int(input('\nMillisele kohale soovib esimene mängija enda tähemärgi paigutada? : '))
             except:
                 sobilik()
                 continue
@@ -513,8 +548,72 @@ def mang(lauasuurus):
         time.sleep(1)
         clear()
 
-        while True:
-            try:
+        if arvuti == False:
+            while True:
+                try:
+                    if lauasuurus == '3x3':
+                        laud('3x3')
+                    elif lauasuurus == '4x4':
+                        laud('4x4')
+                    elif lauasuurus == '5x5':
+                        laud('5x5')
+                    #end
+
+                    valik = int(input('\nMillisele kohale soovib teine mängija enda tähemärgi paigutada? : '))
+                except:
+                    sobilik()
+                    continue
+                else:
+                    number = 1
+                    numberlist = 0
+
+                    if lauasuurus == '3x3':
+                        if valik <= 9 and valik >= 1:
+                            if paigutas2('3x3', valik, number, numberlist) == True:
+                                break
+                            else:
+                                sobilik()
+                                continue
+                            #end
+                        else:
+                            sobilik()
+                            continue
+                        #end
+                    elif lauasuurus == '4x4':
+                        if valik <= 16 and valik >= 1:
+                            if paigutas2('4x4', valik, number, numberlist) == True:
+                                break
+                            else:
+                                sobilik()
+                                continue
+                            #end
+                        else:
+                            sobilik()
+                            continue
+                        #end
+                    elif lauasuurus == '5x5':
+                        if valik <= 25 and valik >= 1:
+                            if paigutas2('5x5', valik, number, numberlist) == True:
+                                break
+                            else:
+                                sobilik()
+                                continue
+                            #end
+                        else:
+                            sobilik()
+                            continue
+                        #end
+                    else:
+                        sobilik()
+                        continue
+                    #end
+                #end
+            #end
+        elif arvuti == True:
+            while True:
+                number = 1
+                numberlist = 0
+
                 if lauasuurus == '3x3':
                     laud('3x3')
                 elif lauasuurus == '4x4':
@@ -523,55 +622,30 @@ def mang(lauasuurus):
                     laud('5x5')
                 #end
 
-                print('')
-                valik = int(input('Millisele kohale soovib teine mängija enda tähemärgi paigutada? : '))
-            except:
-                sobilik()
-                continue
-            else:
-                number = 1
-                numberlist = 0
-
                 if lauasuurus == '3x3':
-                    if valik <= 9 and valik >= 1:
-                        if paigutas2('3x3', valik, number, numberlist) == True:
-                            break
-                        else:
-                            sobilik()
-                            continue
-                        #end
+                    valik = random.randint(1, 9)
+
+                    if paigutas2('3x3', valik, number, numberlist) == True:
+                        break
                     else:
-                        sobilik()
                         continue
                     #end
                 elif lauasuurus == '4x4':
-                    if valik <= 16 and valik >= 1:
-                        if paigutas2('4x4', valik, number, numberlist) == True:
-                            break
-                        else:
-                            sobilik()
-                            continue
-                        #end
+                    valik = random.randint(1, 16)
+
+                    if paigutas2('4x4', valik, number, numberlist) == True:
+                        break
                     else:
-                        sobilik()
                         continue
                     #end
                 elif lauasuurus == '5x5':
-                    if valik <= 25 and valik >= 1:
-                        if paigutas2('5x5', valik, number, numberlist) == True:
-                            break
-                        else:
-                            sobilik()
-                            continue
-                        #end
+                    valik = random.randint(1, 25)
+
+                    if paigutas2('5x5', valik, number, numberlist) == True:
+                        break
                     else:
-                        sobilik()
                         continue
                     #end
-                #end
-                else:
-                    sobilik()
-                    continue
                 #end
             #end
         #end
