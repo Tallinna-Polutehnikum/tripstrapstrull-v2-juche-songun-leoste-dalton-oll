@@ -18,6 +18,18 @@ def clear():
     #end 
 #end
 
+def edasi(lauasuurus):
+    clear()
+    mang(lauasuurus)
+#end
+
+def scoreboard():
+    global esimesevoidud, teisevoidud
+
+    print('\n\nEsimese mängija võidud:', esimesevoidud)
+    print('Teise mängija võidud:', teisevoidud)
+#end
+
 def uuesti():
     global mangulist
 
@@ -42,13 +54,6 @@ def uuesti():
             #end
         #end
     #end
-#end
-
-def scoreboard():
-    global esimesevoidud, teisevoidud
-
-    print('\n\nEsimese mängija võidud:', esimesevoidud)
-    print('Teise mängija võidud:', teisevoidud)
 #end
 
 def esimenevoitis(lauasuurus):
@@ -140,7 +145,9 @@ def paigutas1(lauasuurus, valik, number, numberlist):
 
             if valik == number and mangulist[numberlist] == '#':
                 mangulist[numberlist] = esimene
+
                 print('\nEsimene mängija paigutas enda tähemärgi kohale', valik)
+
                 return True
                 break
             #end
@@ -154,7 +161,9 @@ def paigutas1(lauasuurus, valik, number, numberlist):
 
             if valik == number and mangulist[numberlist] == '#':
                 mangulist[numberlist] = esimene
+
                 print('\nEsimene mängija paigutas enda tähemärgi kohale', valik)
+
                 return True
                 break
             #end
@@ -177,7 +186,9 @@ def paigutas2(lauasuurus, valik, number, numberlist):
 
             if valik == number and mangulist[numberlist] == '#':
                 mangulist[numberlist] = teine
+
                 print('Teine mängija paigutas enda tähemärgi kohale', valik)
+
                 return True
                 break
             #end
@@ -191,7 +202,9 @@ def paigutas2(lauasuurus, valik, number, numberlist):
 
             if valik == number and mangulist[numberlist] == '#':
                 mangulist[numberlist] = teine
+
                 print('Teine mängija paigutas enda tähemärgi kohale', valik)
+
                 return True
                 break
             #end
@@ -205,7 +218,9 @@ def paigutas2(lauasuurus, valik, number, numberlist):
 
             if valik == number and mangulist[numberlist] == '#':
                 mangulist[numberlist] = teine
+
                 print('Teine mängija paigutas enda tähemärgi kohale', valik)
+
                 return True
                 break
             #end
@@ -252,19 +267,11 @@ def alusta():
             sobilik()
             continue
         else:
-            if arvuti == 'J' or arvuti == 'j':
+            if ((arvuti == 'J' or arvuti == 'j') or (arvuti == 'Jah' or arvuti == 'jah')):
                 print('Selge, lisan mängu arvuti')
                 arvuti = True
                 break
-            elif arvuti == 'Jah' or arvuti == 'jah':
-                print('Selge, lisan mängu arvuti')
-                arvuti = True
-                break
-            elif arvuti == 'E' or arvuti == 'e':
-                print('Selge, ei lisa mängu arvutit')
-                arvuti = False
-                break
-            elif arvuti == 'Ei' or arvuti == 'ei':
+            elif ((arvuti == 'E' or arvuti == 'e') or (arvuti == 'Ei' or arvuti == 'ei')):
                 print('Selge, ei lisa mängu arvutit')
                 arvuti = False
                 break
@@ -351,8 +358,8 @@ def tutorial(lauasuurus):
         print("       ║       ║       ")
         print("   1   ║   2   ║   3   ")
         print("       ║       ║       ")   
-        print("\nÜleval on ruudustik numbritega, numbrid on samasugused nagu numpadil.")
-        print("Kui sa oled ära valinud kas sa oled 'X' või 'O', siis edaspidi sa saad enda käigu ajal vajutada numpadil vastavat nuppu kohaga kuhu sa soovid enda tähemärki paigutada.")
+        print("\n\nÜleval on ruudustik numbritega, numbrid on samasugused nagu numpadil.")
+        print("\nKui sa oled ära valinud kas sa oled 'X' või 'O', siis edaspidi sa saad enda käigu ajal vajutada numpadil vastavat nuppu kohaga kuhu sa soovid enda tähemärki paigutada.")
         print('\nVõitmiseks pead sa 3 tükki järjest saama kas horisontaalselt, vertikaalselt või diagonaalselt.')
         input('\n\nEdasi minemiseks vajuta ENTER')
 
@@ -373,8 +380,8 @@ def tutorial(lauasuurus):
         print("       ║       ║       ║       ")
         print("   1   ║   2   ║   3   ║   4   ")
         print("       ║       ║       ║       ")
-        print("\nÜleval on ruudustik numbritega.")
-        print("Kui sa oled ära valinud kas sa oled 'X' või 'O', siis edaspidi sa saad enda käigu ajal kirjutada sisse vastava numbri kuhu sa soovid enda tähemärki paigutada.")
+        print("\n\nÜleval on ruudustik numbritega.")
+        print("\nKui sa oled ära valinud kas sa oled 'X' või 'O', siis edaspidi sa saad enda käigu ajal kirjutada sisse vastava numbri kuhu sa soovid enda tähemärki paigutada.")
         print('\nVõitmiseks pead sa 4 tükki järjest saama kas horisontaalselt, vertikaalselt või diagonaalselt.')
         input('\n\nEdasi minemiseks vajuta ENTER')
         
@@ -399,18 +406,13 @@ def tutorial(lauasuurus):
         print("       ║       ║       ║       ║       ")
         print("   1   ║   2   ║   3   ║   4   ║   5   ")
         print("       ║       ║       ║       ║       ")
-        print("\nÜleval on ruudustik numbritega.")
-        print("Kui sa oled ära valinud kas sa oled 'X' või 'O', siis edaspidi sa saad enda käigu ajal kirjutada sisse vastava numbri kuhu sa soovid enda tähemärki paigutada.")
+        print("\n\nÜleval on ruudustik numbritega.")
+        print("\nKui sa oled ära valinud kas sa oled 'X' või 'O', siis edaspidi sa saad enda käigu ajal kirjutada sisse vastava numbri kuhu sa soovid enda tähemärki paigutada.")
         print('\nVõitmiseks pead sa 5 tükki järjest saama kas horisontaalselt, vertikaalselt või diagonaalselt.')
         input('\n\nEdasi minemiseks vajuta ENTER')
         
         edasi(lauasuurus)
     #end
-#end
-
-def edasi(lauasuurus):
-    clear()
-    mang(lauasuurus)
 #end
 
 ### 3x3
