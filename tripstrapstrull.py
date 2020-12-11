@@ -18,11 +18,6 @@ def clear():
     #end 
 #end
 
-def edasi(lauasuurus):
-    clear()
-    mang(lauasuurus)
-#end
-
 def scoreboard():
     global esimesevoidud, teisevoidud
 
@@ -47,6 +42,7 @@ def uuesti():
                 break
             elif valik == 'E' or valik == 'e' or valik == 'EI' or valik == 'Ei' or valik == 'ei':
                 print('\n\n\nLõpetan mängu, nägemist! :)')
+                time.sleep(5)
                 break
             else:
                 sobilik()
@@ -133,7 +129,6 @@ def paigutas1(lauasuurus, valik, number, numberlist):
                 mangulist[numberlist] = esimene
                 print('\nEsimene mängija paigutas enda tähemärgi kohale', valik)
                 return True
-                break
             #end
 
             number = number + 1
@@ -149,7 +144,6 @@ def paigutas1(lauasuurus, valik, number, numberlist):
                 print('\nEsimene mängija paigutas enda tähemärgi kohale', valik)
 
                 return True
-                break
             #end
 
             number = number + 1
@@ -165,7 +159,6 @@ def paigutas1(lauasuurus, valik, number, numberlist):
                 print('\nEsimene mängija paigutas enda tähemärgi kohale', valik)
 
                 return True
-                break
             #end
 
             number = number + 1
@@ -190,7 +183,6 @@ def paigutas2(lauasuurus, valik, number, numberlist):
                 print('Teine mängija paigutas enda tähemärgi kohale', valik)
 
                 return True
-                break
             #end
 
             number = number + 1
@@ -206,7 +198,6 @@ def paigutas2(lauasuurus, valik, number, numberlist):
                 print('Teine mängija paigutas enda tähemärgi kohale', valik)
 
                 return True
-                break
             #end
 
             number = number + 1
@@ -222,7 +213,6 @@ def paigutas2(lauasuurus, valik, number, numberlist):
                 print('Teine mängija paigutas enda tähemärgi kohale', valik)
 
                 return True
-                break
             #end
 
             number = number + 1
@@ -340,6 +330,11 @@ def alusta():
 
     time.sleep(1)
     clear()
+#end
+
+def edasi(lauasuurus):
+    clear()
+    mang(lauasuurus)
 #end
 
 def tutorial(lauasuurus):
