@@ -30,7 +30,7 @@ def scoreboard():
     print('Teise mängija võidud:', teisevoidud)
 #end
 
-def uuesti():
+def uuesti(lauasuurus):
     global mangulist
 
     while True:
@@ -41,13 +41,40 @@ def uuesti():
             continue
         else:
             if valik == 'J' or valik == 'j' or valik == 'JAH' or valik == 'Jah' or valik == 'jah':
-                clear()
-                mangulist = ['#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#']
-                alusta()
-                break
+                uuesti2(lauasuurus)
             elif valik == 'E' or valik == 'e' or valik == 'EI' or valik == 'Ei' or valik == 'ei':
                 print('\n\n\nLõpetan mängu, nägemist! :)')
-                time.sleep(5)
+                break
+            else:
+                sobilik()
+                continue
+            #end
+        #end
+    #end
+#end
+
+def uuesti2(lauasuurus):
+    global mangulist
+
+    mangulist = ['#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#']
+
+    time.sleep(2)
+    clear()
+    
+    while True:
+        try:
+            valik = str(input('\n\nKas te soovite jätkata samade valikutega? (Jah/Ei) : '))
+        except:
+            sobilik()
+            continue
+        else:
+            if valik == 'J' or valik == 'j' or valik == 'JAH' or valik == 'Jah' or valik == 'jah':
+                clear()
+                mang(lauasuurus)
+                break
+            elif valik == 'E' or valik == 'e' or valik == 'EI' or valik == 'Ei' or valik == 'ei':
+                clear()
+                alusta()
                 break
             else:
                 sobilik()
@@ -75,7 +102,7 @@ def esimenevoitis(lauasuurus):
 
     print('\n\nMäng lõppes ja esimene mängija võitis!')
     scoreboard()
-    uuesti()
+    uuesti(lauasuurus)
 #end
 
 def teinevoitis(lauasuurus):
@@ -96,7 +123,7 @@ def teinevoitis(lauasuurus):
 
     print('\n\nMäng lõppes ja teine mängija võitis!\n')
     scoreboard()
-    uuesti()
+    uuesti(lauasuurus)
 #end
 
 def viik(lauasuurus):
@@ -112,7 +139,7 @@ def viik(lauasuurus):
     #end
 
     print('\n\nMäng lõppes ja tekkis viik!\n')
-    uuesti()
+    uuesti(lauasuurus)
 #end
 
 def sobilik():
@@ -132,7 +159,9 @@ def paigutas1(lauasuurus, valik, number, numberlist):
 
             if valik == number and mangulist[numberlist] == '#':
                 mangulist[numberlist] = esimene
+
                 print('\nEsimene mängija paigutas enda tähemärgi kohale', valik)
+
                 return True
             #end
 
@@ -337,11 +366,6 @@ def alusta():
     clear()
 #end
 
-def edasi(lauasuurus):
-    clear()
-    mang(lauasuurus)
-#end
-
 def tutorial(lauasuurus):
     time.sleep(1)
     clear()
@@ -362,7 +386,8 @@ def tutorial(lauasuurus):
         print('\nVõitmiseks pead sa 3 tükki järjest saama kas horisontaalselt, vertikaalselt või diagonaalselt.')
         input('\n\nEdasi minemiseks vajuta ENTER')
 
-        edasi(lauasuurus)
+        clear()
+        mang(lauasuurus)
     elif lauasuurus == '4x4':
         print("       ║       ║       ║       ")
         print("   13  ║   14  ║   15  ║   16  ")
@@ -384,7 +409,8 @@ def tutorial(lauasuurus):
         print('\nVõitmiseks pead sa 4 tükki järjest saama kas horisontaalselt, vertikaalselt või diagonaalselt.')
         input('\n\nEdasi minemiseks vajuta ENTER')
         
-        edasi(lauasuurus)
+        clear()
+        mang(lauasuurus)
     elif lauasuurus == '5x5':
         print("       ║       ║       ║       ║       ")
         print("   21  ║   22  ║   23  ║   24  ║   25  ")
@@ -410,7 +436,8 @@ def tutorial(lauasuurus):
         print('\nVõitmiseks pead sa 5 tükki järjest saama kas horisontaalselt, vertikaalselt või diagonaalselt.')
         input('\n\nEdasi minemiseks vajuta ENTER')
         
-        edasi(lauasuurus)
+        clear()
+        mang(lauasuurus)
     #end
 #end
 
@@ -420,6 +447,11 @@ def kontroll(lauasuurus, kaik):
     global mangulist, esimene, teine
 
     if lauasuurus == '3x3':
+        if kaik == 9:
+            viik(lauasuurus)
+            return True
+        #end
+
         if kaik >= 5:
             if (mangulist[0] == mangulist[1] == mangulist[2] == esimene) or (mangulist[3] == mangulist[4] == mangulist[5] == esimene) or (mangulist[6] == mangulist[7] == mangulist[8] == esimene) or (mangulist[0] == mangulist[3] == mangulist[6] == esimene) or (mangulist[1] == mangulist[4] == mangulist[7] == esimene) or (mangulist[2] == mangulist[5] == mangulist[8] == esimene) or (mangulist[0] == mangulist[4] == mangulist[8] == esimene) or (mangulist[2] == mangulist[4] == mangulist[6] == esimene):
                 esimenevoitis(lauasuurus)
@@ -428,11 +460,13 @@ def kontroll(lauasuurus, kaik):
                 teinevoitis(lauasuurus)
                 return True
             #end
-        elif kaik == 9:
+        #end
+    elif lauasuurus == '4x4':
+        if kaik == 16:
             viik(lauasuurus)
             return True
         #end
-    elif lauasuurus == '4x4':
+
         if kaik >= 7:
             if (mangulist[0] == mangulist[1] == mangulist[2] == mangulist[3] == esimene) or (mangulist[4] == mangulist[5] == mangulist[6] == mangulist[7] == esimene) or (mangulist[8] == mangulist[9] == mangulist[10] == mangulist[11] == esimene) or (mangulist[12] == mangulist[13] == mangulist[14] == mangulist[15] == esimene) or (mangulist[0] == mangulist[4] == mangulist[8] == mangulist[12] == esimene) or (mangulist[1] == mangulist[5] == mangulist[9] == mangulist[13] == esimene) or (mangulist[2] == mangulist[6] == mangulist[10] == mangulist[14] == esimene) or (mangulist[3] == mangulist[7] == mangulist[11] == mangulist[15] == esimene) or (mangulist[0] == mangulist[5] == mangulist[10] == mangulist[15] == esimene) or (mangulist[3] == mangulist[6] == mangulist[9] == mangulist[12] == esimene):
                 esimenevoitis(lauasuurus)
@@ -441,11 +475,13 @@ def kontroll(lauasuurus, kaik):
                 teinevoitis(lauasuurus)
                 return True
             #end
-        elif kaik == 16:
+        #end
+    elif lauasuurus == '5x5':
+        if kaik == 25:
             viik(lauasuurus)
             return True
         #end
-    elif lauasuurus == '5x5':
+
         if kaik >= 9:
             if (mangulist[0] == mangulist[1] == mangulist[2] == mangulist[3] == mangulist[4] == esimene) or (mangulist[5] == mangulist[6] == mangulist[7] == mangulist[8] == mangulist[9] == esimene) or (mangulist[10] == mangulist[11] == mangulist[12] == mangulist[13] == mangulist[14] == esimene) or (mangulist[15] == mangulist[16] == mangulist[17] == mangulist[18] == mangulist[19] == esimene) or (mangulist[20] == mangulist[21] == mangulist[22] == mangulist[23] == mangulist[24] == esimene) or (mangulist[0] == mangulist[5] == mangulist[10] == mangulist[15] == mangulist[20] == esimene) or (mangulist[1] == mangulist[6] == mangulist[11] == mangulist[16] == mangulist[21] == esimene) or (mangulist[2] == mangulist[7] == mangulist[12] == mangulist[17] == mangulist[22] == esimene) or (mangulist[3] == mangulist[8] == mangulist[13] == mangulist[18] == mangulist[23] == esimene) or (mangulist[4] == mangulist[9] == mangulist[14] == mangulist[19] == mangulist[24] == esimene) or (mangulist[0] == mangulist[6] == mangulist[12] == mangulist[18] == mangulist[24] == esimene) or (mangulist[20] == mangulist[16] == mangulist[12] == mangulist[8] == mangulist[4] == esimene):
                 esimenevoitis(lauasuurus)
@@ -454,9 +490,6 @@ def kontroll(lauasuurus, kaik):
                 teinevoitis(lauasuurus)
                 return True
             #end
-        elif kaik == 25:
-            viik(lauasuurus)
-            return True
         #end
     #end
 #end
