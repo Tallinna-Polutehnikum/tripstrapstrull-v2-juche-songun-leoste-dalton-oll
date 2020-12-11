@@ -345,7 +345,6 @@ def edasi(lauasuurus):
 def tutorial(lauasuurus):
     time.sleep(1)
     clear()
-    print("Õpetust on aega vaadata 30 sekundit\n\n")
     if lauasuurus == '3x3':
         print("       ║       ║       ")
         print("   7   ║   8   ║   9   ")
