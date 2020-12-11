@@ -1,3 +1,8 @@
+# Trips-traps-trull
+#
+# Oll, Leoste, Dalton
+
+
 import time, random
 from os import system, name 
 
