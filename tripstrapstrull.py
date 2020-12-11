@@ -291,11 +291,11 @@ def alusta():
             sobilik()
             continue
         else:
-            if ((arvuti == 'J' or arvuti == 'j') or (arvuti == 'Jah' or arvuti == 'jah')):
+            if ((arvuti == 'J' or arvuti == 'j') or (arvuti == 'JAH' or arvuti == 'Jah' or arvuti == 'jah')):
                 print('Selge, lisan mängu arvuti')
                 arvuti = True
                 break
-            elif ((arvuti == 'E' or arvuti == 'e') or (arvuti == 'Ei' or arvuti == 'ei')):
+            elif ((arvuti == 'E' or arvuti == 'e') or (arvuti == 'EI' or arvuti == 'Ei' or arvuti == 'ei')):
                 print('Selge, ei lisa mängu arvutit')
                 arvuti = False
                 break
